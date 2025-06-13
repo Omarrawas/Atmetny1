@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 208 100% 97%; /* #F0F8FF - Very Light Desaturated Blue */
+    --foreground: 208 10% 25%; /* Darker blue-gray for text */
+
+    --card: 208 100% 98%; /* Slightly brighter than background for cards */
+    --card-foreground: 208 10% 25%;
+
+    --popover: 208 100% 98%;
+    --popover-foreground: 208 10% 25%;
+
+    --primary: 207 82% 68%; /* #64B5F6 - Soft Blue */
+    --primary-foreground: 210 40% 98%; /* White or very light gray for text on primary */
+
+    --secondary: 208 60% 93%; /* Lighter shade of primary or a neutral gray */
+    --secondary-foreground: 207 82% 40%; /* Darker shade of primary for text on secondary */
+
+    --muted: 208 60% 93%;
+    --muted-foreground: 208 10% 40%; /* Muted text color - Adjusted for better contrast */
+
+    --accent: 45 100% 85%; /* #FFECB3 - Gentle Yellow */
+    --accent-foreground: 45 70% 35%; /* Darker yellow/brown for text on accent */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 208 40% 85%; /* Light blue-gray border */
+    --input: 208 40% 90%; /* Light blue-gray input background */
+    --ring: 207 82% 68%; /* Primary color for rings */
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 207 80% 55%; /* A distinct, slightly darker blue for sidebar */
+    --sidebar-foreground: 0 0% 100%; /* White text on sidebar */
+    --sidebar-primary: 45 100% 85%; /* Accent yellow for active/hover items in sidebar */
+    --sidebar-primary-foreground: 45 70% 35%; /* Dark text for active/hover yellow background */
+    --sidebar-accent: 207 82% 65%; /* Lighter blue for hover, matching main primary lightness */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 207 80% 50%; /* Border for sidebar elements */
+    --sidebar-ring: 45 100% 85%; /* Ring color for focused items in sidebar */
+  }
+
+  .dark {
+    --background: 208 20% 10%; /* Dark blue-gray */
+    --foreground: 208 100% 97%; /* Light blue from light theme bg */
+
+    --card: 208 20% 15%;
+    --card-foreground: 208 100% 97%;
+
+    --popover: 208 20% 10%;
+    --popover-foreground: 208 100% 97%;
+
+    --primary: 207 82% 68%; /* #64B5F6 - Keep vibrant */
+    --primary-foreground: 208 20% 5%; /* Very dark blue for text on primary */
+
+    --secondary: 208 20% 20%;
+    --secondary-foreground: 207 82% 75%;
+
+    --muted: 208 20% 20%;
+    --muted-foreground: 208 20% 75%; /* Adjusted for better contrast in dark mode */
+
+    --accent: 45 100% 85%; /* #FFECB3 - Keep vibrant */
+    --accent-foreground: 45 70% 25%; /* Darker yellow/brown */
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 208 20% 25%;
+    --input: 208 20% 25%;
+    --ring: 207 82% 68%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    /* Sidebar specific colors for dark mode */
+    --sidebar-background: 208 20% 8%; /* Even darker sidebar */
+    --sidebar-foreground: 208 100% 97%;
+    --sidebar-primary: 45 100% 85%; /* Accent yellow for active/hover */
+    --sidebar-primary-foreground: 45 70% 25%; /* Dark text for active/hover yellow background */
+    --sidebar-accent: 208 20% 18%; /* Slightly lighter dark blue for general hover */
+    --sidebar-accent-foreground: 208 100% 97%;
+    --sidebar-border: 208 20% 22%;
+    --sidebar-ring: 45 100% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* The Geist font should handle Arabic characters well.
+       Ensure to use lang="ar" and dir="rtl" in HTML for proper rendering. */
+  }
+}
+
+/* KaTeX RTL Fix for Equations */
+/* Ensures that the content within KaTeX rendered math is LTR */
+.katex {
+  direction: ltr !important;
+  unicode-bidi: embed !important; /* Isolate directionality */
+  text-align: left !important; /* Align text/elements within the math LTR */
+}
+
+/* Specific styling for display (block) math */
+.katex-display {
+  display: block; /* Ensure it takes up its own line */
+  text-align: center; /* Center the block equation on the page. The content INSIDE (.katex) will be LTR. */
+  overflow-x: auto; /* Allow horizontal scrolling for very wide equations */
+  padding: 0.5em 0; /* Add some vertical padding */
+}
+
+/* Ensure inline KaTeX elements behave well with surrounding text */
+span.katex { /* Targeting specifically inline math spans */
+  display: inline-block; /* Helps with alignment and prevents awkward breaks */
+}
