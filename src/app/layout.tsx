@@ -1,24 +1,20 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Cairo } from 'next/font/google'; // خط يدعم العربية
 import './globals.css';
 import { AppLayout } from '@/components/layout/app-layout';
 import { Toaster } from '@/components/ui/toaster';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { ThemeProvider } from '@/components/theme-provider';
-import Head from 'next/head'; // Import Head
+import Head from 'next/head';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin', 'arabic'], // Added 'arabic' subset if available, otherwise it will fallback.
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin', 'arabic'], // Added 'arabic' subset if available.
+// ✅ استخدام خط Cairo فقط (يدعم arabic و latin)
+const cairo = Cairo({
+  variable: '--font-cairo',
+  subsets: ['latin', 'arabic'],
 });
 
 export const metadata: Metadata = {
-  title: 'Atmetny | أتمتني', // Changed from NajahEdu Prep
+  title: 'Atmetny | أتمتني',
   description: 'منصة تعليمية شاملة لطلاب الثالث الثانوي في سوريا',
 };
 
@@ -37,7 +33,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </Head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${cairo.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
